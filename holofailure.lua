@@ -2,15 +2,15 @@
 --Layer 1 {OK, Fault, Crit} Layer 2 {A,B,C} Layer 3 {Red 0-255, Green 0-255, Blue 0-255,}
 
 local colours = {
-	{{0,0,255},{0,0,255},{0,0,255}},
-	{{0,0,255},{0,0,255},{0,0,255}}, 
-	{{0,0,255},{0,0,255},{0,0,255}}} 
+    {{0,0,255},{0,0,255},{0,0,255}},
+    {{0,0,255},{0,0,255},{0,0,255}}, 
+    {{0,0,255},{0,0,255},{0,0,255}}} 
 
 function EZCONCAT(tab)
     local txt--=""
-    for local i=1,xMax do
-        for local j=1,yMax do
-            for local k=1,zMax do
+    for i=1,xMax do
+        for j=1,yMax do
+            for k=1,zMax do
                 txt..tab[i][j][k]
     end end end
     return txt
