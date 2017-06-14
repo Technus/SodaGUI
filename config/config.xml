@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="instanceCom0">COM7</entry>
+<entry key="containerColumnsCount">1</entry>
+<entry key="CheckFMVersion_CMD">6E 51 86 01 FE E4 13 00 00 B1</entry>
+<entry key="containerRowsCount">1</entry>
+<entry key="ReadOptionCodes_CMD">6E 51 86 01 FE F0 12 06 00 A2</entry>
+<entry key="ConfigurationFolder1">...</entry>
+<entry key="configurationFile">C:\Configure\5300\50PFK5300_12_INX_C7\026.002.030.001.inf</entry>
+<entry key="ConfigurationFolder0">C:\Configure</entry>
+<entry key="GetTVMAC_CMD">6E 51 86 01 FE F0 01 01 00 B6</entry>
+<entry key="CheckModelName_CMD">6E 51 86 01 FE F0 18 04 00 AA</entry>
+<entry key="instanceHTML">blueprint.html</entry>
+</properties>

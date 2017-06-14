@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tec.soda.frames.SodaInstance">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="550" height="300"/>
+    </constraints>
+    <properties>
+      <minimumSize width="500" height="300"/>
+    </properties>
+    <border type="line">
+      <color color="-2228993"/>
+    </border>
+    <children>
+      <component id="9286f" class="javax.swing.JTextField" binding="commandInput">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="100" height="-1"/>
+            <preferred-size width="-1" height="24"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-1638401"/>
+          <toolTipText value="Command input box (pefix with 0x for hex input)"/>
+        </properties>
+      </component>
+      <component id="5ce4f" class="javax.swing.JButton" binding="logSaveButton">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="60" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <margin top="2" left="2" bottom="2" right="2"/>
+          <text value="Save"/>
+          <toolTipText value="Save visible verbosity in program directory"/>
+        </properties>
+      </component>
+      <component id="b8e48" class="javax.swing.JButton" binding="txtModeButton">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="60" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <margin top="2" left="2" bottom="2" right="2"/>
+          <text value="Info"/>
+          <toolTipText value="Verbosity change"/>
+        </properties>
+      </component>
+      <component id="a5723" class="javax.swing.JButton" binding="startStopButton">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <margin top="2" left="2" bottom="2" right="2"/>
+          <text value="startStop"/>
+          <toolTipText value="Start/Stop process"/>
+        </properties>
+      </component>
+      <component id="d59db" class="javax.swing.JButton" binding="resetButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <margin top="2" left="2" bottom="2" right="2"/>
+          <text value="Reset"/>
+          <toolTipText value="Clears all"/>
+        </properties>
+      </component>
+      <grid id="97907" binding="statusPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16771276"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="741a0" class="javax.swing.JLabel" binding="statusLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="24" style="1"/>
+              <foreground color="-2228993"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="UNDEFINED"/>
+              <toolTipText value="Shows current status"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <splitpane id="92dc3" binding="splitPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <continuousLayout value="false"/>
+          <dividerLocation value="92"/>
+          <dividerSize value="8"/>
+          <enabled value="true"/>
+          <foreground color="-2228993"/>
+          <oneTouchExpandable value="true"/>
+          <orientation value="0"/>
+          <resizeWeight value="0.7"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <scrollpane id="e7632" binding="outScroll">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+              <horizontalScrollBarPolicy value="30"/>
+              <verticalScrollBarPolicy value="22"/>
+            </properties>
+            <border type="none" title="Output to PCB (COM in Info mode)"/>
+            <children>
+              <component id="b0308" class="javax.swing.JTextPane" binding="outputData">
+                <constraints/>
+                <properties>
+                  <background color="-16772825"/>
+                  <contentType value="text/plain"/>
+                  <editable value="false"/>
+                  <enabled value="true"/>
+                  <foreground color="-647"/>
+                  <preferredSize width="-1" height="-1"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="794e5" binding="inScroll">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+              <doubleBuffered value="false"/>
+              <enabled value="true"/>
+              <horizontalScrollBarPolicy value="30"/>
+              <verticalScrollBarPolicy value="22"/>
+            </properties>
+            <border type="none" title="Input from PCB (Procedures in Info mode)"/>
+            <children>
+              <component id="361dc" class="javax.swing.JTextPane" binding="inputData">
+                <constraints/>
+                <properties>
+                  <background color="-16772825"/>
+                  <contentType value="text/plain"/>
+                  <editable value="false"/>
+                  <enabled value="true"/>
+                  <foreground color="-7536759"/>
+                  <preferredSize width="-1" height="-1"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </splitpane>
+      <component id="abef7" class="javax.swing.JLabel" binding="modelLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="14" style="1"/>
+          <foreground color="-9450497"/>
+          <text value="UNDEFINED"/>
+          <toolTipText value="Shows current model"/>
+        </properties>
+      </component>
+      <component id="b8caf" class="javax.swing.JButton" binding="extraButton">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="50" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <margin top="2" left="2" bottom="2" right="2"/>
+          <text value="COM##"/>
+          <toolTipText value="Command picker"/>
+        </properties>
+      </component>
+      <grid id="a4c79" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-16771276"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="41c7" class="javax.swing.JLabel" binding="procTime">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <alignmentX value="0.5"/>
+              <enabled value="true"/>
+              <font style="1"/>
+              <foreground color="-2228993"/>
+              <text value="999999"/>
+              <toolTipText value="Current procedure time"/>
+            </properties>
+          </component>
+          <component id="7c930" class="javax.swing.JLabel" binding="totalTime">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <alignmentX value="0.5"/>
+              <font style="1"/>
+              <foreground color="-2228993"/>
+              <text value="999999"/>
+              <toolTipText value="Total reflash time"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

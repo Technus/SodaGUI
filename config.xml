@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="instanceCom0">COM1</entry>
+<entry key="containerColumnsCount">3</entry>
+<entry key="CheckFMVersion_CMD">6E 51 86 01 FE E4 13 00 00 B1</entry>
+<entry key="containerRowsCount">2</entry>
+<entry key="configurationFile">Configure\4131\32PFT4131_05\TPN163E_002.230.000.000.inf</entry>
+<entry key="ConfigurationFolder0">...</entry>
+<entry key="CheckModelName_CMD">6E 51 86 01 FE F0 18 04 00 AA</entry>
+<entry key="instanceCom5">COM?</entry>
+<entry key="instanceCom4">COM?</entry>
+<entry key="instanceCom3">COM?</entry>
+<entry key="instanceCom2">COM?</entry>
+<entry key="instanceCom1">COM?</entry>
+</properties>

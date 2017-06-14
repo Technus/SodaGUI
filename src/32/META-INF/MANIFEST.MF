@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: darcula.jar parport-win32.jar jssc.jar
+Main-Class: tec.soda.Soda
+

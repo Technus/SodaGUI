@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tec.soda.frames.ProcSelector">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="baed6" class="javax.swing.JProgressBar" binding="progress">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-647"/>
+          <borderPainted value="true"/>
+          <enabled value="true"/>
+          <focusable value="false"/>
+          <foreground color="-9765017"/>
+          <orientation value="1"/>
+          <toolTipText value="Command send progress bar - green meanas idle"/>
+          <value value="100"/>
+        </properties>
+      </component>
+      <component id="cabfb" class="javax.swing.JSpinner" binding="delay">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <enabled value="true"/>
+          <foreground color="-1638401"/>
+          <toolTipText value="Delay in ms"/>
+        </properties>
+      </component>
+      <scrollpane id="b949a">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="74d11" class="javax.swing.JList" binding="processList">
+            <constraints/>
+            <properties>
+              <background color="-16777216"/>
+              <font name="ConsolasUART" size="14" style="0"/>
+              <foreground color="-1638401"/>
+              <selectionForeground color="-1638401"/>
+              <toolTipText value="Available commands for this model"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="5fe53" class="javax.swing.JButton" binding="sendButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=" Send Selected"/>
+          <toolTipText value="Send commands (from top to bottom)"/>
+        </properties>
+      </component>
+      <component id="6d0d1" class="javax.swing.JButton" binding="putButton">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="To Input"/>
+          <toolTipText value="Put inside command box"/>
+        </properties>
+      </component>
+      <component id="66bdd" class="javax.swing.JButton" binding="refreshButton">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Refresh"/>
+          <toolTipText value="Reload from HDD"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
