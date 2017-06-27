@@ -1,6 +1,7 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -14,7 +15,7 @@ public class _6_ConfirmUpgrade extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         maxTime=Integer.parseInt(param[1]);
     }
 
@@ -36,5 +37,15 @@ public class _6_ConfirmUpgrade extends Procedure {
     @Override
     public String getTypeName() {
         return "Confirm Upgrade";
+    }
+
+    @Override
+    public String getExtraInformation() {
+        return "";
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return null;
     }
 }

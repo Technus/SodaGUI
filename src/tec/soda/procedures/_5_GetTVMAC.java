@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseLength;
+import tec.soda.fileHandleres.FileHolder;
 
 import static tec.soda.Soda.config;
 
@@ -29,7 +31,7 @@ public class _5_GetTVMAC extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
 
     }
 
@@ -47,5 +49,17 @@ public class _5_GetTVMAC extends Procedure {
     @Override
     public String getTypeName() {
         return "Read MAC";
+    }
+
+    @Override
+    public String getExtraInformation() {
+        return "";
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseLength(6)
+        };
     }
 }

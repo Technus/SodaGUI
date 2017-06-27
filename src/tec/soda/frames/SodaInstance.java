@@ -173,28 +173,30 @@ public class SodaInstance {
     public void saveLog(int desiredVerbosity){
         if(worker==null)return;
         try {
-            StringBuilder temp=new StringBuilder();
-            temp.append(modelLabel.getText()).append(" ").append(name).append(" ").append(dtf.format(LocalDateTime.now())).append(".rtf");
+            String temp= modelLabel.getText() + " " + name + " " + dtf.format(LocalDateTime.now()) + ".rtf";
             switch (desiredVerbosity){
                 case 0:
-                    worker.sdc.rxText.exportToRtf("PART1 "+temp.toString());
-                    worker.sdc.txText.exportToRtf("PART2 "+temp.toString());
+                    worker.sdc.rxText.exportToRtf("Rx   "+ temp);
+                    worker.sdc.txText.exportToRtf("Tx   "+temp);
                     break;
                 case 1:
-                    worker.sdc.rxInfoText.exportToRtf("PART1 "+temp.toString());
-                    worker.sdc.txInfoText.exportToRtf("PART2 "+temp.toString());
+                    worker.sdc.rxInfoText.exportToRtf("RxI  "+temp);
+                    worker.sdc.txInfoText.exportToRtf("TxI  "+temp);
                     break;
                 case 2:
-                    worker.sdc.info.exportToRtf("PART1 "+temp.toString());
-                    worker.sdc.rxtx.exportToRtf("PART2 "+temp.toString());
+                    worker.sdc.info.exportToRtf("I    "+temp);
+                    worker.sdc.rxtx.exportToRtf("RxTx "+temp);
                     break;
                 case 3:
-                    worker.sdc.rxInfoHex.exportToRtf("PART1 "+temp.toString());
-                    worker.sdc.txInfoHex.exportToRtf("PART2 "+temp.toString());
+                    worker.sdc.rxHex.exportToRtf("RxH  "+temp);
+                    worker.sdc.txHex.exportToRtf("TxH  "+temp);
                     break;
                 case 4:
-                    worker.sdc.rxHex.exportToRtf("PART1 "+temp.toString());
-                    worker.sdc.txHex.exportToRtf("PART2 "+temp.toString());
+                    worker.sdc.rxInfoHex.exportToRtf("RxIH "+temp);
+                    worker.sdc.txInfoHex.exportToRtf("TxIH "+temp);
+                    break;
+                default:
+                    worker.sdc.info.exportToRtf("I    "+temp);
                     break;
             }
         }catch (BadLocationException | IOException e){
@@ -247,7 +249,7 @@ public class SodaInstance {
     }
 
     public void invalidate(){
-        if(cmdPicker!=null) cmdPicker.invalidate();
+        if(cmdPicker!=null) cmdPicker.interruptThread();
         if(worker!=null) worker.invalidate();
         if(updateThread !=null) updateThread.interrupt();
     }

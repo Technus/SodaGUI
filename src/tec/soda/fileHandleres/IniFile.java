@@ -10,13 +10,11 @@ import java.util.TreeMap;
  * Created by daniel.peczkowski on 2017-03-27.
  */
 public class IniFile extends DataFile {//Processes etc.
-    public final InfFile inf;
     public final String fileID,fileGroupID;
     public final int declaredProcedureCount,realProcedureCount;
 
     public IniFile(File f, InfFile inf) throws IOException {
         super(f);
-        this.inf=inf;
         for (String section : getSections()) {
             if (section.startsWith("Procedure")) {
                 if (section.length() == 10) {
@@ -51,7 +49,7 @@ public class IniFile extends DataFile {//Processes etc.
         return count;
     }
 
-    public TreeMap<Integer,Procedure> getProcedures(){
+    public TreeMap<Integer,Procedure> getProcedures(FileHolder files){
         TreeMap<Integer,Procedure> p=new TreeMap<>();
         for(String section:getSections()){
             if(!section.startsWith("Procedure")) continue;
@@ -59,7 +57,7 @@ public class IniFile extends DataFile {//Processes etc.
             if(proc==null)continue;
             int ID = Integer.parseInt(section.substring(9));
             if (ID < 0) continue;
-            proc.init(inf,fileID,ID,
+            proc.init(files,fileID,ID,
                     getString(section,"Name","Unnamed"),
                     getString(section,"Sort","1"),
                     getString(section,"CMD","0"),//STRING

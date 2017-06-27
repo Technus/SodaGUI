@@ -1,6 +1,9 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseLength;
+import tec.soda.dataContainers.nQpacket;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -15,7 +18,7 @@ public class _8_WriteFunctionData extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         command.append(param[1],true);//hex command
         data = param[2];
         command.append((char)(data.length())).append(data,false);
@@ -24,6 +27,13 @@ public class _8_WriteFunctionData extends Procedure {
             sum^=b;
         }
         command.append(sum);
+        if(command.subString(0,2).equals("nQ")){
+            try {
+                command = new nQpacket(command, true);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         //USEFUL later for board connection check
         //if(inf.enableCommandHead){
         //    command=new ByteDataBuilder(inf.commandHead,true).append(command);
@@ -51,5 +61,17 @@ public class _8_WriteFunctionData extends Procedure {
     @Override
     public String getTypeName() {
         return "Write Function Data";
+    }
+
+    @Override
+    public String getExtraInformation() {
+        return "";
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseLength(0)
+        };
     }
 }

@@ -121,7 +121,7 @@ public class SodaSelector {
                             infFile.getName()
             );
         }catch (Exception e){
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

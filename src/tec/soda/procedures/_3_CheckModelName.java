@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseData;
+import tec.soda.fileHandleres.FileHolder;
 
 import static tec.soda.Soda.config;
 
@@ -8,7 +10,7 @@ import static tec.soda.Soda.config;
  * Created by daniel.peczkowski on 2017-03-29.
  */
 public class _3_CheckModelName extends Procedure {
-    public String model;//Look for
+    public ByteDataBuilder model;//Look for
     public static final int ID = 3;
     public static ByteDataBuilder CMD;
     static{
@@ -25,8 +27,8 @@ public class _3_CheckModelName extends Procedure {
     }
 
     @Override
-    public void init2() {
-        model = param[1];
+    public void init2(FileHolder files) {
+        model = new ByteDataBuilder(param[1],false);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class _3_CheckModelName extends Procedure {
     public String information() {
         return "-->  Cmd: " + CMD.toHexString(false, false) +
              "\n-->  Cmd: " + CMD.toString() +
-             "\n-->Model: " + model;
+             "\n-->Model: " + model.toString();
     }
 
     @Override
@@ -47,12 +49,19 @@ public class _3_CheckModelName extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Model: "+model;
+    public String getTypeName() {
+        return "Check Model";
     }
 
     @Override
-    public String getTypeName() {
-        return "Check Model";
+    public String getExtraInformation() {
+        return "Model: "+model.toString();
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseData(model)
+        };
     }
 }

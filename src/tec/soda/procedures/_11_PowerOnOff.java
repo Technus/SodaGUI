@@ -1,6 +1,7 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -19,7 +20,7 @@ public class _11_PowerOnOff extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         flag=Integer.parseInt(param[1]);
         offTime=Integer.parseInt(param[2]);
     }
@@ -42,5 +43,15 @@ public class _11_PowerOnOff extends Procedure {
     @Override
     public String getTypeName() {
         return "Power Control";
+    }
+
+    @Override
+    public String getExtraInformation() {
+        return "";
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[0];
     }
 }

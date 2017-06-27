@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseData;
+import tec.soda.fileHandleres.FileHolder;
 
 import static tec.soda.Soda.config;
 
@@ -27,7 +29,7 @@ public class _9_ReadOptionCodes extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         command=param[1];
         codes =param[2];
         String[] codePieces=codes.split(" ");
@@ -37,7 +39,7 @@ public class _9_ReadOptionCodes extends Procedure {
                 codePieces[i]=codes.substring(i*5,(i+1)*5);
             }
         }
-        data=new ByteDataBuilder();
+        data=new ByteDataBuilder((byte) 0,(byte) 0);//PREPEND 2 bytes of 0
         for(int i=0;i<codePieces.length;i++){
             int piece=Integer.parseInt(codePieces[i]);
             data.append((byte)(piece&0xff));
@@ -65,12 +67,19 @@ public class _9_ReadOptionCodes extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Codes: "+data.toString();
+    public String getTypeName() {
+        return "Read Option Codes";
     }
 
     @Override
-    public String getTypeName() {
-        return "Read Option Codes";
+    public String getExtraInformation() {
+        return "Codes: "+data.toString();
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseData(data)
+        };
     }
 }

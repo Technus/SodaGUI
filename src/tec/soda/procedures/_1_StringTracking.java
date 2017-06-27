@@ -1,12 +1,13 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
  */
 public class _1_StringTracking extends Procedure {
-    public String lookForString;
+    public ByteDataBuilder lookFor;
     public int lookForMiliSeconds;
     public int behaviourFlag;
     //1 - matched string will be stopped and shown fail
@@ -18,8 +19,8 @@ public class _1_StringTracking extends Procedure {
     }
 
     @Override
-    public void init2() {
-        lookForString = param[1];
+    public void init2(FileHolder files) {
+        lookFor = new ByteDataBuilder(param[1],false);
         lookForMiliSeconds =Integer.parseInt(param[2]);
         behaviourFlag =Integer.parseInt(param[3]);//default 0
     }
@@ -31,7 +32,7 @@ public class _1_StringTracking extends Procedure {
 
     @Override
     public String information() {
-        return "-->Track: " + lookForString+
+        return "-->Track: " + lookFor.toString()+
              "\n--> Flag: " + behaviourFlag;
     }
 
@@ -41,12 +42,19 @@ public class _1_StringTracking extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Track: "+lookForString;
+    public String getTypeName() {
+        return "String Tracking";
     }
 
     @Override
-    public String getTypeName() {
-        return "String Tracking";
+    public String getExtraInformation() {
+        return "Track: "+lookFor.toString();
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new ByteDataBuilder(lookFor)
+        };
     }
 }

@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseData;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -18,10 +20,10 @@ public class _12_CheckACK extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         command.append(param[1],true);//hex command
         dataStr = param[2];
-        if(dataStr.equals("0")) dataStr =null;
+        if(dataStr.equals("0")) dataStr = null;
         if(dataStr!=null){
             data=new ByteDataBuilder(dataStr.replace(" ",""),true);
         }else {
@@ -58,12 +60,19 @@ public class _12_CheckACK extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Ack: "+data.toString();
+    public String getTypeName() {
+        return "Check Data";
     }
 
     @Override
-    public String getTypeName() {
-        return "Check Data";
+    public String getExtraInformation() {
+        return "Ack: "+(data.length()>0?data.toString():dataStr);
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseData(data)
+        };
     }
 }

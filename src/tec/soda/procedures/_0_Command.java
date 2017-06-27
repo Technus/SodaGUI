@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseLength;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -21,7 +23,7 @@ public class _0_Command extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         command=new ByteDataBuilder(cmd,true);
         byte[] bytes=command.toBytes();
         byte sum=0x00;
@@ -48,5 +50,17 @@ public class _0_Command extends Procedure {
     @Override
     public String getTypeName() {
         return "Command";
+    }
+
+    @Override
+    public String getExtraInformation() {
+        return "";
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                wasChecksumOK?new desiredResponseLength(0):null
+        };
     }
 }

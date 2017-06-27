@@ -55,7 +55,7 @@ public class FileHolder {
         }
 
         for (IniFile ini : iniFiles.values()) {
-            procedures.put(ini.fileID, ini.getProcedures());
+            procedures.put(ini.fileID, ini.getProcedures(this));
         }
 
         for (TreeMap<Integer, Procedure> map : procedures.values()) {
@@ -63,9 +63,9 @@ public class FileHolder {
                 proc.initJumps(procedures);
 
                 if (proc instanceof _3_CheckModelName) {
-                    model = ((_3_CheckModelName) proc).model;
+                    model = ((_3_CheckModelName) proc).model.toString();
                 } else if (proc instanceof _4_CheckFMVersion) {
-                    version = ((_4_CheckFMVersion) proc).version;
+                    version = ((_4_CheckFMVersion) proc).version.toString();
                 } else if (proc instanceof _9_ReadOptionCodes) {
                     codes = ((_9_ReadOptionCodes) proc).codes;
                 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tec.soda.frames.ProcSelector">
-  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="2" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
@@ -10,7 +10,7 @@
     <children>
       <component id="baed6" class="javax.swing.JProgressBar" binding="progress">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-647"/>
@@ -23,20 +23,22 @@
           <value value="100"/>
         </properties>
       </component>
-      <component id="cabfb" class="javax.swing.JSpinner" binding="delay">
+      <component id="cabfb" class="javax.swing.JSpinner" binding="responseDelay">
         <constraints>
-          <grid row="1" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-16777216"/>
           <enabled value="true"/>
-          <foreground color="-1638401"/>
-          <toolTipText value="Delay in ms"/>
+          <foreground color="-22016"/>
+          <toolTipText value="Response delay in ms"/>
         </properties>
       </component>
       <scrollpane id="b949a">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="700" height="300"/>
+          </grid>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -48,7 +50,7 @@
               <font name="ConsolasUART" size="14" style="0"/>
               <foreground color="-1638401"/>
               <selectionForeground color="-1638401"/>
-              <toolTipText value="Available commands for this model"/>
+              <toolTipText value="Available procedures for this model"/>
             </properties>
           </component>
         </children>
@@ -58,8 +60,8 @@
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=" Send Selected"/>
-          <toolTipText value="Send commands (from top to bottom)"/>
+          <text value="Execute Selected"/>
+          <toolTipText value="Execute Procedures (from top to bottom)"/>
         </properties>
       </component>
       <component id="6d0d1" class="javax.swing.JButton" binding="putButton">
@@ -78,6 +80,27 @@
         <properties>
           <text value="Refresh"/>
           <toolTipText value="Reload from HDD"/>
+        </properties>
+      </component>
+      <component id="671b0" class="javax.swing.JSpinner" binding="trackingDelay">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-5570816"/>
+          <toolTipText value="String tracking delay in ms"/>
+        </properties>
+      </component>
+      <component id="550a7" class="javax.swing.JButton" binding="xButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12828863"/>
+          <foreground color="-65536"/>
+          <text value="X"/>
+          <toolTipText value="Stop Running Thread"/>
         </properties>
       </component>
     </children>

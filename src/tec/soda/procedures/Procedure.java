@@ -1,6 +1,7 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.fileHandleres.FileHolder;
 import tec.soda.fileHandleres.InfFile;
 
 import java.util.TreeMap;
@@ -24,7 +25,7 @@ public abstract class Procedure implements Comparable<Procedure> {
         this.ID=ID;
     }
 
-    public final void init(InfFile inf,String fileID, int number,String name,String sort,String cmd,String cmdKind,String waitAck,String delayMS,String... para) {
+    public final void init(FileHolder files, String fileID, int number, String name, String sort, String cmd, String cmdKind, String waitAck, String delayMS, String... para) {
         this.fileID = fileID;
         this.procedureID = number;
         this.name = name;
@@ -38,11 +39,11 @@ public abstract class Procedure implements Comparable<Procedure> {
         this.msgOK = param[5];
         this.jumpOnNG = Integer.parseInt(param[6])!=0;
         this.jumpToFile = param[7];
-        this.inf=inf;
-        init2();
+        this.inf=files.infFile;
+        init2(files);
     }
 
-    public abstract void init2();
+    public abstract void init2(FileHolder files);
 
     public void initJumps(TreeMap<String,TreeMap<Integer,Procedure>> tree){
         try {
@@ -69,17 +70,6 @@ public abstract class Procedure implements Comparable<Procedure> {
 
     public abstract boolean run();
 
-    //@Override
-    //public String toString() {
-    //    return "\u001b[34;1mProcedure: "+fileID+"/"+ procedureID+"\u001b[0m"
-    //        +"\nType: "+ID+" Name: \u001b[36m"+name+"\u001b[0m";
-    //}
-
-    @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+getTypeName()+" Name: "+name;
-    }
-
     public abstract String information();
 
     public static Procedure get(int ID){
@@ -101,6 +91,8 @@ public abstract class Procedure implements Comparable<Procedure> {
         }
     }
 
+    public abstract ByteDataBuilder[] getResponsesToReceive();
+
     public abstract ByteDataBuilder[] getCommandsToSend();
 
     public boolean listAllCommands(){
@@ -116,13 +108,21 @@ public abstract class Procedure implements Comparable<Procedure> {
 
     public static final int UNDEFINED_STATUS=-1,NG_STATUS=0,OK_STATUS=1;
 
-    public final String getProcedureTitle(){
-        return "Procedure: "+fileID+"/"+procedureID +" Type: "+getTypeName();
+    public String getProcedureTitle() {
+        return fileID+"/"+procedureID +" Type: "+getTypeName()+" Name: "+name;
+    }
+
+    @Override
+    public final String toString(){
+        return "Procedure: " + fileID + "/" + procedureID + "  Type: " + getTypeName() + "  Name: " + name + "  " + getExtraInformation();
     }
 
     public final String getProcedureName(){
         return name;
     }
+
+    public abstract String getTypeName();
+    public abstract String getExtraInformation();
 
     public final String getProcedureStatusMsg(int state){
         switch (state){
@@ -131,6 +131,4 @@ public abstract class Procedure implements Comparable<Procedure> {
             default: return "Undefined";
         }
     }
-
-    public abstract String getTypeName();
 }

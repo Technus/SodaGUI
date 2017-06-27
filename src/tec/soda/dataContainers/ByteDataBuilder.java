@@ -135,7 +135,33 @@ public class ByteDataBuilder implements Cloneable{
         return data.substring(s,e);
     }
 
+    public void replace(int start,int stop, String string){
+        data.replace(start,stop,string);
+    }
+
     public void clear(){
         data.delete(0,data.length());
+    }
+
+    public int lastIndexOf(ByteDataBuilder lookFor){
+        return data.lastIndexOf(lookFor.toString());
+    }
+
+    public int lastIndexOf(String lookFor){
+        return data.lastIndexOf(lookFor);
+    }
+
+    public int lastIndexOf(ByteDataBuilder lookFor, int startIndex){
+        int lastIndex=lastIndexOf(lookFor);
+        return lastIndex>=startIndex?lastIndex:-1;
+    }
+
+    public int lastIndexOf(String lookFor, int startIndex){
+        int lastIndex=lastIndexOf(lookFor);
+        return lastIndex>=startIndex?lastIndex:-1;
+    }
+
+    public char charAt(int index){
+        return data.charAt(index);
     }
 }

@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseData;
+import tec.soda.fileHandleres.FileHolder;
 
 /**
  * Created by daniel.peczkowski on 2017-03-29.
@@ -18,7 +20,7 @@ public class _7_CheckFunctionVersion extends Procedure {
     }
 
     @Override
-    public void init2() {
+    public void init2(FileHolder files) {
         command.append(param[1],true);//hex command
         func =param[2];
         data =new ByteDataBuilder(func,false);
@@ -53,12 +55,19 @@ public class _7_CheckFunctionVersion extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Data: "+ data.toString();
+    public String getTypeName() {
+        return "Check Function Version";
     }
 
     @Override
-    public String getTypeName() {
-        return "Check Function Version";
+    public String getExtraInformation() {
+        return "Data: "+ data.toString();
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseData(data)
+        };
     }
 }

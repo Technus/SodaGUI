@@ -1,6 +1,8 @@
 package tec.soda.procedures;
 
 import tec.soda.dataContainers.ByteDataBuilder;
+import tec.soda.dataContainers.desiredResponseData;
+import tec.soda.fileHandleres.FileHolder;
 
 import static tec.soda.Soda.config;
 
@@ -8,7 +10,7 @@ import static tec.soda.Soda.config;
  * Created by daniel.peczkowski on 2017-03-29.
  */
 public class _4_CheckFMVersion extends Procedure {
-    public String version;//Look for
+    public ByteDataBuilder version;//Look for
     public static final int ID=4;
     public static ByteDataBuilder CMD;
     static{
@@ -25,8 +27,8 @@ public class _4_CheckFMVersion extends Procedure {
     }
 
     @Override
-    public void init2() {
-        version = param[1];
+    public void init2(FileHolder files) {
+        version = new ByteDataBuilder(param[1],false);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class _4_CheckFMVersion extends Procedure {
     public String information() {
         return "-->  Cmd: "+CMD.toHexString(false,false)+
              "\n-->  Cmd: "+CMD.toString()+
-             "\n-->  Ver: "+version;
+             "\n-->  Ver: "+version.toString();
     }
 
     @Override
@@ -47,12 +49,19 @@ public class _4_CheckFMVersion extends Procedure {
     }
 
     @Override
-    public String toString() {
-        return fileID+"/"+procedureID +" Type: "+ID+" Name: "+name+" Ver: "+version;
+    public String getTypeName() {
+        return "Check Firmware";
     }
 
     @Override
-    public String getTypeName() {
-        return "Check Firmware";
+    public String getExtraInformation() {
+        return "Ver: "+version.toString();
+    }
+
+    @Override
+    public ByteDataBuilder[] getResponsesToReceive() {
+        return new ByteDataBuilder[]{
+                new desiredResponseData(version)
+        };
     }
 }

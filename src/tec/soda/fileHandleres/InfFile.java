@@ -16,7 +16,7 @@ public class InfFile extends DataFile {//Header
             waitUpgradeSeconds, waitRebootSeconds, waitCheckVersionSeconds,
             ambilightBoardNum, ambilightSaveTimeMilliSeconds;
     public final String commandHead, nameOfEED, nameOfTest, fileGroupID;
-    public final boolean enableBurnEED, enableCommandHead, enableBarcodeScan;
+    public final boolean enableBurnEED, enableCommandHead, enableBarcodeScan, enableSaveLog, enableMarkMAC;
     private final TreeMap<Integer,AmbilightDataContainer> ambilightDataContainerMap;
 
     public InfFile(File f) throws IOException {
@@ -33,13 +33,16 @@ public class InfFile extends DataFile {//Header
             packetSizeEED = -1;
         }
 
-        if (enableCommandHead = getInt("FactoryMode", "Head_Enable", 0) != 0) {
+        if (enableCommandHead = getInt("FactoryMode", "Head_Enable", 0) != 0) {//For board connection check???
             commandHead = getString("FactoryMode", "CommandHead", null);
             waitAfterCommandHeadMilliSeconds = getInt("FactoryMode", "DelayAfterHead", 1000);
         } else {
             commandHead = null;
             waitAfterCommandHeadMilliSeconds = -1;
         }
+
+        enableSaveLog=getInt("Miscellaneous", "SavelogEnable", 0)!=0;
+        enableMarkMAC=getInt("Miscellaneous", "MarkMacEnable", 0)!=0;
 
         nameOfTest = getString("Miscellaneous", "TestCaseName", null);
         String[] partsOfName=nameOfTest.split("_");
@@ -55,7 +58,7 @@ public class InfFile extends DataFile {//Header
         waitRebootSeconds = getInt("Timeout_Setting", "Reboot", 300);
         waitCheckVersionSeconds = getInt("Timeout_Setting", "WaitChkVer", 300);
 
-        controlFlowKind = getInt("ControlFlow", "Kind", -1);
+        controlFlowKind = getInt("ControlFlow", "Kind", 1);
 
         ambilightBoardNum = getInt("AL_Setting", "AL_BoardNum", -1);
         ambilightSaveTimeMilliSeconds = getInt("AL_Setting", "AL_SaveTime", 1000);
@@ -68,7 +71,7 @@ public class InfFile extends DataFile {//Header
         System.out.println(">>>INF<<< "+f.getName()+" "+fileGroupID+" "+nameOfTest+" "+nameOfEED);
     }
 
-    public TreeMap<Integer,AmbilightDataContainer> getAmbilightDataContainerMap(){
+    public TreeMap<Integer,AmbilightDataContainer> getAmbilightDataContainerMapClone(){
         TreeMap<Integer,AmbilightDataContainer> newMap = new TreeMap<>();
         for(Map.Entry<Integer,AmbilightDataContainer> entry:ambilightDataContainerMap.entrySet()){
             newMap.put(entry.getKey(),entry.getValue().clone());
